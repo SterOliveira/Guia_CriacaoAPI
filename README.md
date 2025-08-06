@@ -36,16 +36,22 @@ npm install express     # Instala o Express
 ## 🔧 Código Principal (index.js)
 
 ```javascript
-const express = require('express');
-const app = express();
-const PORT = 3000;
+const express = require('express'); // Importa o módulo Express, que facilita a criação de APIs no Node.js.
+const app = express(); // Cria uma instância do Express. Essa instância será usada para definir rotas, middlewares e iniciar o servidor.
+const PORT = 3000; // Define a porta em que o servidor vai rodar. Neste caso, será http://localhost:3000.
 
-app.use(express.json()); // Permite receber JSON no corpo da requisição
+app.use(express.json()); // Esse middleware permite que sua API entenda requisições com corpo em JSON.
 
-// Rota GET simples
-app.get('/', (req, res) => {
-  res.send('API está funcionando!');
+//Rota GET simples
+app.get('/', (req, res) => { 
+  res.send('API está funcionando!'); 
 });
+/* 
+ - Cria uma rota GET no caminho /.
+ - Quando acessa http://localhost:3000/, ela retorna o texto "API está funcionando!".
+ - req = requisição; res = resposta.
+ - res.send(...) envia texto ou HTML como resposta.
+*/
 
 // Rota GET com dados fictícios
 app.get('/usuarios', (req, res) => {
@@ -55,6 +61,11 @@ app.get('/usuarios', (req, res) => {
   ];
   res.json(usuarios);
 });
+/*
+ - Cria uma rota GET no caminho /usuarios.
+ - Retorna uma lista de usuários em formato JSON.
+ - res.json(...) envia um objeto ou array como resposta em JSON, usado por padrão em APIs REST.
+*/
 
 // Rota POST para criar usuário (simulado)
 app.post('/usuarios', (req, res) => {
